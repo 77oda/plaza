@@ -4,4 +4,8 @@ flutter_native_splash:
   image: "assets/images/ShopLogo.png"
 
   android_12:
+    color: "#FFFFFF"
+    image: "assets/images/ShopLogo_Android12.png"
+
+
   

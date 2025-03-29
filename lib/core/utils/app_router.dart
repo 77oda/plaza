@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:plaza/features/onboarding/onboarding_screen.dart';
+import 'package:plaza/features/onboarding/presentation/onboarding_screen.dart';
 
 abstract class AppRouter {
   static const kHomeView = '/onboardingView';
