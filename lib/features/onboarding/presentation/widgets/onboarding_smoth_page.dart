@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plaza/core/theming/colors.dart';
+import 'package:plaza/core/utils/app_router.dart';
+import 'package:plaza/features/onboarding/presentation/widgets/onboarding_body.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingSmothPage extends StatelessWidget {
   PageController onBoardController;
-  late bool isLast;
+  // late bool isLast;
   OnboardingSmothPage({
     super.key,
     required this.onBoardController,
-    required this.isLast,
+    // required this.isLast,
   });
 
   @override
@@ -18,12 +22,12 @@ class OnboardingSmothPage extends StatelessWidget {
       children: [
         SmoothPageIndicator(
           controller: onBoardController,
-          effect: const ExpandingDotsEffect(
+          effect: ExpandingDotsEffect(
             dotColor: Colors.grey,
             activeDotColor: ColorsManager.primaryColor,
             expansionFactor: 4,
-            dotHeight: 10,
-            dotWidth: 20,
+            dotHeight: 10.h,
+            dotWidth: 20.w,
             spacing: 10,
           ),
           count: 3,
@@ -36,7 +40,7 @@ class OnboardingSmothPage extends StatelessWidget {
               // CacheHelper.saveData(key: 'ShowOnBoard', value: false).then((value)
               // {
               //   if(value) {
-              //     navigateAndKill(context, LoginScreen());
+              GoRouter.of(context).pushReplacement(AppRouter.loginView);
               //   }
               // });
             } else {

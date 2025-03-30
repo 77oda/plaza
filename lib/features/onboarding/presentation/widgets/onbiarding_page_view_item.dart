@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/widgets/separator.dart';
 
 Widget onBoardingPageViewItem(model) => Column(
@@ -8,10 +9,10 @@ Widget onBoardingPageViewItem(model) => Column(
     separator(0, 10),
     Text(
       '${model.title}',
-      style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
     ),
     separator(0, 10),
-    Text('${model.body}', style: const TextStyle(fontSize: 20)),
+    Text('${model.body}', style: TextStyle(fontSize: 20.sp)),
     separator(0, 50),
   ],
 );

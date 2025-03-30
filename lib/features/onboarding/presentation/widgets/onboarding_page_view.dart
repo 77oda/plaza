@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:plaza/features/onboarding/data/model/Boarding_model.dart';
 import 'package:plaza/features/onboarding/presentation/widgets/onbiarding_page_view_item.dart';
+import 'package:plaza/features/onboarding/presentation/widgets/onboarding_body.dart';
 
 class OnboardingPageView extends StatelessWidget {
   PageController onBoardController;
-  late bool isLast;
+  // late bool isLast;
   List<BoardingModel> boardingModel = [
     BoardingModel(
       image: 'assets/images/OnlineShop.png',
@@ -28,7 +29,7 @@ class OnboardingPageView extends StatelessWidget {
   OnboardingPageView({
     super.key,
     required this.onBoardController,
-    required this.isLast,
+    // required this.isLast,
   });
 
   @override

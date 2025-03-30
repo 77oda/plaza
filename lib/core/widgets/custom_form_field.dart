@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget defaultFormField({
+Widget customFormField({
   required context,
   TextEditingController? controller,
   dynamic label,

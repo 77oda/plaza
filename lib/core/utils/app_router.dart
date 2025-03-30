@@ -1,26 +1,16 @@
 import 'package:go_router/go_router.dart';
+import 'package:plaza/features/login/logic/login_cubit/login_cubit.dart';
+import 'package:plaza/features/login/presentation/Login_Screen.dart';
 import 'package:plaza/features/onboarding/presentation/onboarding_screen.dart';
 
 abstract class AppRouter {
-  static const kHomeView = '/onboardingView';
-  static const kBookDetailsView = '/bookDetailsView';
-  static const kSearchView = '/searchView';
+  static const loginView = '/LoginScreen';
 
   static final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => OnBoarding()),
+      GoRoute(path: '/', builder: (context, state) => OnBoardingScreen()),
 
-      // GoRoute(
-      //   path: kBookDetailsView,
-      //   builder: (context, state) => BlocProvider(
-      //     create: (context) => SimilarBooksCubit(
-      //       getIt.get<HomeRepoImpl>(),
-      //     ),
-      //     child: BookDetailsView(
-      //       bookModel: state.extra as BookModel,
-      //     ),
-      //   ),
-      // ),
+      GoRoute(path: loginView, builder: (context, state) => LoginScreen()),
     ],
   );
 }

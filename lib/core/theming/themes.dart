@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:plaza/core/theming/colors.dart';
 
 ThemeData lightMode() => ThemeData(
+  primarySwatch: Colors.red,
   primaryColor: ColorsManager.primaryColor,
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.white,
@@ -43,43 +44,43 @@ ThemeData lightMode() => ThemeData(
   ),
 );
 
-ThemeData darkMode() => ThemeData(
-  appBarTheme: AppBarTheme(
-    backgroundColor: Colors.grey[800],
-    elevation: 0,
-    actionsIconTheme: const IconThemeData(color: Colors.white),
-    titleTextStyle: const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.bold,
-      fontSize: 23,
-    ),
-    iconTheme: const IconThemeData(color: Colors.white),
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarBrightness: Brightness.light,
-      statusBarColor: Colors.grey[800],
-      statusBarIconBrightness: Brightness.light,
-    ),
-  ),
-  primarySwatch: Colors.red,
-  scaffoldBackgroundColor: Colors.grey[800],
-  inputDecorationTheme: InputDecorationTheme(
-    border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-    contentPadding: const EdgeInsetsDirectional.only(top: 5, start: 30),
-    hintStyle: const TextStyle(color: Colors.white),
-  ),
-  textTheme: const TextTheme(
-    bodyLarge: TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w400,
-      fontSize: 15,
-    ),
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: Colors.grey[800],
-    selectedItemColor: ColorsManager.primaryColor,
-    unselectedItemColor: Colors.white,
-    type: BottomNavigationBarType.fixed,
-  ),
-  iconTheme: const IconThemeData(color: Colors.black),
-  primaryIconTheme: const IconThemeData(color: Colors.black),
-);
+// ThemeData darkMode() => ThemeData(
+//   appBarTheme: AppBarTheme(
+//     backgroundColor: Colors.grey[800],
+//     elevation: 0,
+//     actionsIconTheme: const IconThemeData(color: Colors.white),
+//     titleTextStyle: const TextStyle(
+//       color: Colors.white,
+//       fontWeight: FontWeight.bold,
+//       fontSize: 23,
+//     ),
+//     iconTheme: const IconThemeData(color: Colors.white),
+//     systemOverlayStyle: SystemUiOverlayStyle(
+//       statusBarBrightness: Brightness.light,
+//       statusBarColor: Colors.grey[800],
+//       statusBarIconBrightness: Brightness.light,
+//     ),
+//   ),
+//   primarySwatch: Colors.red,
+//   scaffoldBackgroundColor: Colors.grey[800],
+//   inputDecorationTheme: InputDecorationTheme(
+//     border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+//     contentPadding: const EdgeInsetsDirectional.only(top: 5, start: 30),
+//     hintStyle: const TextStyle(color: Colors.white),
+//   ),
+//   textTheme: const TextTheme(
+//     bodyLarge: TextStyle(
+//       color: Colors.white,
+//       fontWeight: FontWeight.w400,
+//       fontSize: 15,
+//     ),
+//   ),
+//   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+//     backgroundColor: Colors.grey[800],
+//     selectedItemColor: ColorsManager.primaryColor,
+//     unselectedItemColor: Colors.white,
+//     type: BottomNavigationBarType.fixed,
+//   ),
+//   iconTheme: const IconThemeData(color: Colors.black),
+//   primaryIconTheme: const IconThemeData(color: Colors.black),
+// );
