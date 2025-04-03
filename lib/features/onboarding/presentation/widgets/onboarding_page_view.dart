@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plaza/features/onboarding/data/model/Boarding_model.dart';
 import 'package:plaza/features/onboarding/presentation/widgets/onbiarding_page_view_item.dart';
-import 'package:plaza/features/onboarding/presentation/widgets/onboarding_body.dart';
 
+// ignore: must_be_immutable
 class OnboardingPageView extends StatelessWidget {
   PageController onBoardController;
-  // late bool isLast;
   List<BoardingModel> boardingModel = [
     BoardingModel(
       image: 'assets/images/OnlineShop.png',
@@ -26,11 +25,7 @@ class OnboardingPageView extends StatelessWidget {
     ),
   ];
 
-  OnboardingPageView({
-    super.key,
-    required this.onBoardController,
-    // required this.isLast,
-  });
+  OnboardingPageView({super.key, required this.onBoardController});
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +33,6 @@ class OnboardingPageView extends StatelessWidget {
       child: PageView.builder(
         controller: onBoardController,
         physics: const BouncingScrollPhysics(),
-        onPageChanged: (index) {
-          if (index == boardingModel.length - 1) {
-            isLast = true;
-          } else {
-            isLast = false;
-          }
-        },
         itemBuilder:
             (context, index) => onBoardingPageViewItem(boardingModel[index]),
         itemCount: 3,

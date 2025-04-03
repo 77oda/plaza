@@ -3,17 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plaza/core/theming/colors.dart';
 import 'package:plaza/core/utils/app_router.dart';
-import 'package:plaza/features/onboarding/presentation/widgets/onboarding_body.dart';
+import 'package:plaza/core/helpers/cacheHelper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class OnboardingSmothPage extends StatelessWidget {
   PageController onBoardController;
-  // late bool isLast;
-  OnboardingSmothPage({
-    super.key,
-    required this.onBoardController,
-    // required this.isLast,
-  });
+  OnboardingSmothPage({super.key, required this.onBoardController});
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +32,14 @@ class OnboardingSmothPage extends StatelessWidget {
         FloatingActionButton(
           backgroundColor: ColorsManager.primaryColor,
           onPressed: () {
-            if (isLast) {
-              // CacheHelper.saveData(key: 'ShowOnBoard', value: false).then((value)
-              // {
-              //   if(value) {
-              GoRouter.of(context).pushReplacement(AppRouter.loginView);
-              //   }
-              // });
+            if (onBoardController.page == 2) {
+              CacheHelper.saveData(key: 'ShowOnBoard', value: false).then((
+                value,
+              ) {
+                if (value) {
+                  GoRouter.of(context).pushReplacement(AppRouter.loginScreen);
+                }
+              });
             } else {
               onBoardController.nextPage(
                 duration: const Duration(seconds: 1),

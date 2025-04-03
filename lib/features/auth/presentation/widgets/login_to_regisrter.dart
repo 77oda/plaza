@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:plaza/core/utils/app_router.dart';
 
-class LoginRegisterButton extends StatelessWidget {
-  const LoginRegisterButton({super.key});
+class LoginToRegister extends StatelessWidget {
+  const LoginToRegister({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class LoginRegisterButton extends StatelessWidget {
         const Text('Don\'t have an account?'),
         TextButton(
           onPressed: () {
-            // navigateTo(context, RegisterScreen());
+            GoRouter.of(context).push(AppRouter.registerScreen);
           },
           child: const Text(
             'Register Now',

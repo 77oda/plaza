@@ -9,7 +9,7 @@ class AuthLogo extends StatelessWidget {
     return Row(
       children: [
         Image.asset('assets/images/ShopLogo.png', width: 40.w, height: 40.h),
-        Text('ShopMart', style: TextStyle(fontSize: 25.sp)),
+        Text('ShopMart', style: TextStyle(fontSize: 22.sp)),
       ],
     );
   }

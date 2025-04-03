@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plaza/core/theming/colors.dart';
 
 Widget customFormField({
   required context,
@@ -32,6 +33,9 @@ Widget customFormField({
 
   //textCapitalization: TextCapitalization.words,
   decoration: InputDecoration(
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(color: ColorsManager.primaryColor),
+    ),
     hintText: label,
     border: UnderlineInputBorder(),
     prefixIcon: Icon(prefix),

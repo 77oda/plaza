@@ -21,9 +21,15 @@ ThemeData lightMode() => ThemeData(
       statusBarIconBrightness: Brightness.dark,
     ),
   ),
-  // primarySwatch: ColorsManager.primaryColor,
   scaffoldBackgroundColor: Colors.white,
   inputDecorationTheme: InputDecorationTheme(
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(15),
+      borderSide: BorderSide(
+        color: ColorsManager.primaryColor,
+        width: 2,
+      ), // لون الحقل عند التركيز
+    ),
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
     contentPadding: const EdgeInsetsDirectional.only(top: 5, start: 20),
     hintStyle: const TextStyle(color: Colors.black),
@@ -41,6 +47,18 @@ ThemeData lightMode() => ThemeData(
     unselectedItemColor: Colors.grey,
     showUnselectedLabels: true,
     type: BottomNavigationBarType.fixed,
+  ),
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color:
+        ColorsManager.primaryColor, // إضافة لون الـ CircularProgressIndicator
+  ),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: ColorsManager.primaryColor, // لون المؤشر الوامض
+    selectionColor: ColorsManager.primaryColor.withOpacity(
+      0.3,
+    ), // لون النص المحدد
+    selectionHandleColor:
+        ColorsManager.primaryColor, // 🔴 لون النقطة الكبيرة تحت المؤشر
   ),
 );
 
