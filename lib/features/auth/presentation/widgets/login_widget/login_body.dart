@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
-import 'package:plaza/features/auth/logic/login_cubit/login_state.dart';
-import 'package:plaza/features/auth/presentation/widgets/auth_logo.dart';
-import 'package:plaza/features/auth/presentation/widgets/login_button.dart';
-import 'package:plaza/features/auth/presentation/widgets/login_forgetPass_button.dart';
-import 'package:plaza/features/auth/presentation/widgets/login_text_field.dart';
-import 'package:plaza/features/auth/presentation/widgets/login_to_regisrter.dart';
+import 'package:plaza/core/widgets/app_logo.dart';
+import 'package:plaza/features/auth/presentation/widgets/login_widget/login_button.dart';
+import 'package:plaza/features/auth/presentation/widgets/login_widget/login_forgetPass_button.dart';
+import 'package:plaza/features/auth/presentation/widgets/login_widget/login_text_field.dart';
+import 'package:plaza/features/auth/presentation/widgets/login_widget/login_to_regisrter.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -26,7 +23,7 @@ class LoginBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                AuthLogo(),
+                AppLogo(),
                 SizedBox(height: 10.h),
                 Text(
                   'Ahlan!...Welcome back!',

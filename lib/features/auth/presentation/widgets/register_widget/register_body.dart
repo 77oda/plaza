@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:plaza/features/auth/presentation/widgets/Register_button.dart';
-import 'package:plaza/features/auth/presentation/widgets/auth_logo.dart';
-import 'package:plaza/features/auth/presentation/widgets/register_text_field.dart';
-import 'package:plaza/features/auth/presentation/widgets/register_to_login.dart';
+import 'package:plaza/core/widgets/app_logo.dart';
+import 'package:plaza/features/auth/presentation/widgets/register_widget/register_button.dart';
+import 'package:plaza/features/auth/presentation/widgets/register_widget/register_text_field.dart';
+import 'package:plaza/features/auth/presentation/widgets/register_widget/register_to_login.dart';
 
 class RegisterBody extends StatelessWidget {
   const RegisterBody({super.key});
@@ -19,7 +19,7 @@ class RegisterBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AuthLogo(),
+              AppLogo(),
               SizedBox(height: 10.h),
               Text(
                 'Create a ShopMart Account',

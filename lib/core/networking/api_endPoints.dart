@@ -3,6 +3,8 @@ class ApiEndPoints {
 
   static const register = 'register';
 
+  static const banners = 'banners';
+
   static const profile = 'profile';
 
   static const updateProfile = 'update-profile';

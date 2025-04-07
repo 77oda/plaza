@@ -19,7 +19,7 @@ class RegisterRepoImpl implements RegisterRepo {
     required String phone,
   }) async {
     try {
-      final response = await ApiService.postData(
+      final response = await apiService.postData(
         endPoint: ApiEndPoints.register,
         data: {
           'email': email,

@@ -1,6 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:plaza/features/auth/presentation/widgets/login_body.dart';
+import 'package:plaza/features/auth/presentation/widgets/login_widget/login_body.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

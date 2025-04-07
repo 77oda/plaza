@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/helpers/app_regex.dart';
 import 'package:plaza/core/widgets/custom_form_field.dart';
-import 'package:plaza/features/auth/logic/register_cubit/register_cubit_cubit.dart';
-import 'package:plaza/features/auth/presentation/widgets/pass_validations.dart';
+import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
+import 'package:plaza/features/auth/presentation/widgets/register_widget/register_pass_validations.dart';
 
 class RegisterTextField extends StatefulWidget {
   const RegisterTextField({super.key});

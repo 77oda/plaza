@@ -1,18 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:plaza/core/helpers/cacheHelper.dart';
 import 'package:plaza/core/networking/api_service.dart';
 import 'package:plaza/core/theming/themes.dart';
 import 'package:plaza/core/utils/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:plaza/core/helpers/bloc_observer.dart';
-import 'package:plaza/core/helpers/cacheHelper.dart';
 import 'package:plaza/core/utils/service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  token = await CacheHelper.getSecuredString('token') ?? '';
+  await AppRouter.getInitialRoute();
   Bloc.observer = MyBlocObserver();
-  ApiService.init();
-  await CacheHelper.init();
   setupServiceLocator();
 
   runApp(const MyApp());

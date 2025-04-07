@@ -1,12 +1,11 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaza/core/helpers/cacheHelper.dart';
-import 'package:plaza/core/utils/constants.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plaza/core/widgets/custom_button.dart';
 import 'package:plaza/core/widgets/custom_toast.dart';
-import 'package:plaza/features/auth/logic/register_cubit/register_cubit_cubit.dart';
-import 'package:plaza/features/auth/logic/register_cubit/register_cubit_state.dart';
+import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
+import 'package:plaza/features/auth/logic/register_cubit/register_state.dart';
 
 class RegisterButton extends StatelessWidget {
   const RegisterButton({super.key});
@@ -16,29 +15,15 @@ class RegisterButton extends StatelessWidget {
     return BlocConsumer<RegisterCubit, RegisterState>(
       listener: (context, state) {
         if (state is RegisterSuccessState)
-          // ignore: curly_braces_in_flow_control_structures
           if (state.userModel.status) {
-            CacheHelper.saveData(
-              key: 'token',
-              value: state.userModel.data?.token,
-            ).then((value) {
-              // token = state.userModel.data?.token;
-              context.read<RegisterCubit>().emailController.clear();
-              context.read<RegisterCubit>().passwordController.clear();
-              context.read<RegisterCubit>().nameController.clear();
-              context.read<RegisterCubit>().confirmPasswordController.clear();
-              context.read<RegisterCubit>().phoneController.clear();
-              // navigateAndKill(context, ShopLayout());
-              // ShopCubit.get(context).currentIndex = 0;
-              // ShopCubit.get(context).getHomeData();
-              // ShopCubit.get(context).getProfileData();
-              // ShopCubit.get(context).getFavoriteData();
-              // ShopCubit.get(context).getCartData();
-              // ShopCubit.get(context).getAddresses();
-            });
+            showToast('Register Successfully');
+            GoRouter.of(context).pop();
           } else {
             showToast(state.userModel.message);
           }
+        if (state is RegisterErrorState) {
+          showToast(state.error);
+        }
       },
       builder: (context, state) {
         return state is RegisterLoadingState

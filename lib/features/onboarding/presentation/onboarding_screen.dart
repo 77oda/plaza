@@ -18,7 +18,7 @@ class OnBoardingScreen extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                CacheHelper.saveData(key: 'ShowOnBoard', value: false).then((
+                CacheHelper.setData(key: 'onBoarding', value: true).then((
                   value,
                 ) {
                   if (value) {

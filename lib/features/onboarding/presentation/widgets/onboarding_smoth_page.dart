@@ -33,9 +33,7 @@ class OnboardingSmothPage extends StatelessWidget {
           backgroundColor: ColorsManager.primaryColor,
           onPressed: () {
             if (onBoardController.page == 2) {
-              CacheHelper.saveData(key: 'ShowOnBoard', value: false).then((
-                value,
-              ) {
+              CacheHelper.setData(key: 'onBoarding', value: true).then((value) {
                 if (value) {
                   GoRouter.of(context).pushReplacement(AppRouter.loginScreen);
                 }

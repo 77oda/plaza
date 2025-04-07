@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaza/core/helpers/cacheHelper.dart';
-import 'package:plaza/core/utils/constants.dart';
+import 'package:go_router/go_router.dart';
+import 'package:plaza/core/utils/app_router.dart';
 import 'package:plaza/core/widgets/custom_button.dart';
 import 'package:plaza/core/widgets/custom_toast.dart';
 import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
@@ -16,24 +16,13 @@ class LoginButton extends StatelessWidget {
       listener: (context, state) {
         if (state is LoginSuccessState) {
           if (state.loginUserModel.status) {
-            CacheHelper.saveData(
-              key: 'token',
-              value: state.loginUserModel.data?.token,
-            ).then((value) {
-              // token = state.loginUserModel.data?.token;
-              // navigateAndKill(context, ShopLayout());
-              context.read<LoginCubit>().emailController.clear();
-              context.read<LoginCubit>().passwordController.clear();
-              // ShopCubit.get(context).currentIndex = 0;
-              // ShopCubit.get(context).getHomeData();
-              // ShopCubit.get(context).getProfileData();
-              // ShopCubit.get(context).getFavoriteData();
-              // ShopCubit.get(context).getCartData();
-              // ShopCubit.get(context).getAddresses();
-            });
+            GoRouter.of(context).pushReplacement(AppRouter.layoutScreen);
           } else {
             showToast(state.loginUserModel.message);
           }
+        }
+        if (state is LoginErrorState) {
+          showToast(state.error);
         }
       },
       builder: (context, state) {
@@ -52,7 +41,6 @@ class LoginButton extends StatelessWidget {
                     password:
                         context.read<LoginCubit>().passwordController.text,
                   );
-                  // token = CacheHelper.getData('token');
                 }
               },
             );
