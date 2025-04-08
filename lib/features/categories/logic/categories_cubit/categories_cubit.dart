@@ -1,17 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:plaza/features/home/data/model/categories_model.dart';
-import 'package:plaza/features/home/data/repos/home_repo.dart';
-
+import 'package:plaza/features/categories/data/model/categories_model.dart';
+import 'package:plaza/features/categories/data/repos/categories_repo.dart';
 part 'categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
-  CategoriesCubit(this.homeRepo) : super(CategoriesInitialState());
-  final HomeRepo homeRepo;
+  CategoriesCubit(this.categoriesRepo) : super(CategoriesInitialState());
+  final CategoriesRepo categoriesRepo;
 
   Future<void> fetchCategories() async {
     emit(CategoriesLoadingState());
-    final result = await homeRepo.fetchCategories();
+    final result = await categoriesRepo.fetchCategories();
     result.fold(
       (failure) => emit(CategoriesErrorState(failure.errMessage)),
       (categories) => emit(CategoriesSuccessState(categories)),

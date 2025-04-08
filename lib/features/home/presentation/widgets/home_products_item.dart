@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/theming/colors.dart';
 import 'package:plaza/features/home/data/model/home_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeProductsItem extends StatelessWidget {
   HomeProductsItem({super.key, required this.model});
@@ -16,26 +18,40 @@ class HomeProductsItem extends StatelessWidget {
       },
       child: Container(
         color: Colors.white,
-        padding: EdgeInsetsDirectional.only(start: 8.w, bottom: 8.h),
+        padding: EdgeInsetsDirectional.only(start: 8.w, bottom: 8.h, end: 8.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               alignment: AlignmentDirectional.bottomStart,
               children: [
-                Image(
-                  image: NetworkImage('${model.image}'),
-                  height: 150,
-                  width: 150,
+                CachedNetworkImage(
+                  imageUrl: "${model.image}",
+                  height: 150.h,
+                  width: double.infinity,
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  placeholder:
+                      (context, url) => Shimmer(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Colors.grey, Colors.white, Colors.grey],
+                        ),
+                        child: Container(
+                          height: 150.h,
+                          width: 150.w,
+                          color: Colors.grey[300],
+                        ),
+                      ),
                 ),
                 if (model.discount != 0)
                   Container(
                     color: ColorsManager.primaryColor,
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
                       child: Text(
                         'Discount',
-                        style: TextStyle(fontSize: 14, color: Colors.white),
+                        style: TextStyle(fontSize: 14.sp, color: Colors.white),
                       ),
                     ),
                   ),
@@ -56,14 +72,14 @@ class HomeProductsItem extends StatelessWidget {
                           'EGP',
                           style: TextStyle(
                             color: Colors.grey[800],
-                            fontSize: 12,
+                            fontSize: 12.sp,
                           ),
                         ),
                         Text(
                           '${model.price}',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 20.sp,
                           ),
                         ),
                       ],
@@ -73,18 +89,18 @@ class HomeProductsItem extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Text(
+                          Text(
                             'EGP',
                             style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
                           Text(
                             '${model.oldPrice}',
-                            style: const TextStyle(
-                              fontSize: 12,
+                            style: TextStyle(
+                              fontSize: 12.sp,
                               decoration: TextDecoration.lineThrough,
                               color: Colors.grey,
                             ),
@@ -92,9 +108,9 @@ class HomeProductsItem extends StatelessWidget {
                           SizedBox(width: 7.w),
                           Text(
                             '${model.discount}' + '% OFF',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.red,
-                              fontSize: 11,
+                              fontSize: 11.sp,
                             ),
                           ),
                         ],

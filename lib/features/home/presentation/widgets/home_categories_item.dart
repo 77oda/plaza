@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/theming/colors.dart';
-import 'package:plaza/features/home/data/model/categories_model.dart';
+import 'package:plaza/features/categories/data/model/categories_model.dart';
 
 class HomeCategoriesItem extends StatelessWidget {
   HomeCategoriesItem({required this.model, super.key});

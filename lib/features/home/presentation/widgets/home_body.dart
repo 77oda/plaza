@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:plaza/features/home/presentation/widgets/home_carousel_slider.dart';
+import 'package:plaza/features/home/presentation/widgets/home_banners.dart';
 import 'package:plaza/features/home/presentation/widgets/home_categories.dart';
 import 'package:plaza/features/home/presentation/widgets/home_products.dart';
 
@@ -17,7 +16,7 @@ class HomeBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeCarouselSlider(),
+            HomeBanners(),
             HomeCategories(),
             Container(
               width: double.infinity,

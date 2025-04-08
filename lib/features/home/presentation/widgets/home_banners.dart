@@ -5,28 +5,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
 import 'package:plaza/features/home/logic/banners_cubit/banners_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:plaza/features/home/presentation/widgets/home_banners_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeCarouselSlider extends StatelessWidget {
-  const HomeCarouselSlider({super.key});
+class HomeBanners extends StatelessWidget {
+  const HomeBanners({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BannersCubit, BannersState>(
       builder: (context, state) {
         if (state is BannersLoadingState)
-          return SizedBox(
-            height: 200.h,
-            width: double.infinity,
-            child: Shimmer(
-              gradient: const LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.grey, Colors.white, Colors.grey],
-              ),
-              child: Container(color: Colors.white),
-            ),
-          );
+          return HomeBannersShimmer();
         else if (state is BannersErrorState)
           return Center(child: Text(state.error));
         else if (state is BannersSuccessState)

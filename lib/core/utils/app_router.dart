@@ -6,6 +6,9 @@ import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
 import 'package:plaza/features/auth/presentation/Login_Screen.dart';
 import 'package:plaza/features/auth/presentation/register_screen.dart';
+import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
+import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
+import 'package:plaza/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:plaza/features/layout/presentation/layout_screen.dart';
 import 'package:plaza/features/onboarding/presentation/onboarding_screen.dart';
 
@@ -55,7 +58,25 @@ abstract class AppRouter {
             ),
       ),
 
-      GoRoute(path: layoutScreen, builder: (context, state) => LayoutScreen()),
+      GoRoute(
+        path: layoutScreen,
+        builder:
+            (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => getIt<BannersCubit>()..fetchBanners(),
+                ),
+                BlocProvider(
+                  create:
+                      (context) => getIt<CategoriesCubit>()..fetchCategories(),
+                ),
+                BlocProvider(
+                  create: (context) => getIt<HomeCubit>()..fetchHomeProducts(),
+                ),
+              ],
+              child: LayoutScreen(),
+            ),
+      ),
     ],
   );
 }

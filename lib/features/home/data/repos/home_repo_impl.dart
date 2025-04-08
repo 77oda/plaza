@@ -4,7 +4,7 @@ import 'package:plaza/core/networking/api_endPoints.dart';
 import 'package:plaza/core/networking/api_failures.dart';
 import 'package:plaza/core/networking/api_service.dart';
 import 'package:plaza/features/home/data/model/banners_model.dart';
-import 'package:plaza/features/home/data/model/categories_model.dart';
+import 'package:plaza/features/categories/data/model/categories_model.dart';
 import 'package:plaza/features/home/data/model/home_model.dart';
 import 'package:plaza/features/home/data/repos/home_repo.dart';
 
@@ -18,20 +18,6 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final response = await apiService.getData(endPoint: ApiEndPoints.banners);
       return right(BannersModel.fromJson(response.data));
-    } on DioException catch (error) {
-      return left(ServerFailure.fromDioError(error));
-    } catch (error) {
-      return left(ServerFailure(error.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, CategoriesModel>> fetchCategories() async {
-    try {
-      final response = await apiService.getData(
-        endPoint: ApiEndPoints.categories,
-      );
-      return right(CategoriesModel.fromJson(response.data));
     } on DioException catch (error) {
       return left(ServerFailure.fromDioError(error));
     } catch (error) {
