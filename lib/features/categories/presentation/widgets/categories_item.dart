@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:plaza/core/utils/app_router.dart';
 import 'package:plaza/features/categories/data/model/categories_model.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,8 +14,10 @@ class CategoriesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // CategoriesCubit.get(context).getCategoriesDetailData(model.id);
-        // navigateTo(context, CategoryProductsScreen(model.name));
+        GoRouter.of(context).push(
+          AppRouter.productsScreen,
+          extra: {'id': model.id, 'name': model.name},
+        );
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),

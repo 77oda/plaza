@@ -5,7 +5,7 @@ import 'package:plaza/features/cart/presentation/cart_screen.dart';
 import 'package:plaza/features/categories/presentation/categories_screen.dart';
 import 'package:plaza/features/home/presentation/home_screen.dart';
 import 'package:plaza/features/layout/presentation/widgets/layout_app_bar.dart';
-import 'package:plaza/features/profile/presentation/profile_screen.dart';
+import 'package:plaza/features/account/presentation/account_screen.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -20,18 +20,18 @@ class _LayoutScreenState extends State<LayoutScreen> {
   List<Widget> layoutPage = [
     const HomeScreen(),
     const CategoriesScreen(),
-    const ProfileScreen(),
     const CartScreen(),
+    const AccountScreen(),
   ];
 
   List<BottomNavigationBarItem> items = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
     BottomNavigationBarItem(icon: Icon(Icons.grid_view), label: 'Categories'),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
     BottomNavigationBarItem(
       icon: Icon(Icons.shopping_cart_outlined),
       label: 'Cart',
     ),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'My Account'),
   ];
   @override
   Widget build(BuildContext context) {

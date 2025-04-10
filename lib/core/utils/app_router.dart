@@ -2,6 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plaza/core/helpers/cacheHelper.dart';
 import 'package:plaza/core/utils/service_locator.dart';
+import 'package:plaza/features/Favorites/logic/favorites_cubit/favorites_cubit.dart';
+import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_cubit.dart';
+import 'package:plaza/features/Favorites/presentation/favorites_screen.dart';
 import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
 import 'package:plaza/features/auth/presentation/Login_Screen.dart';
@@ -11,12 +14,22 @@ import 'package:plaza/features/categories/logic/categories_cubit/categories_cubi
 import 'package:plaza/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:plaza/features/layout/presentation/layout_screen.dart';
 import 'package:plaza/features/onboarding/presentation/onboarding_screen.dart';
+import 'package:plaza/features/products/data/model/products_model.dart';
+import 'package:plaza/features/products/logic/products_cubit/products_cubit.dart';
+import 'package:plaza/features/products/presentation/product_details_screen.dart';
+import 'package:plaza/features/products/presentation/products_screen.dart';
+import 'package:plaza/features/profile/logic/profile_cubit/profile_cubit.dart';
+import 'package:plaza/features/profile/presentation/profile_screen.dart';
 
 abstract class AppRouter {
   static const onBoardingScreen = '/OnBoardingScreen';
   static const loginScreen = '/LoginScreen';
   static const registerScreen = '/RegisterScreen';
   static const layoutScreen = '/LayoutScreen';
+  static const productsScreen = '/ProductsScreen';
+  static const productDetailsScreen = '/ProductDetailsScreen';
+  static const favoritesScreen = '/FavoritesScreen';
+  static const profileScreen = '/ProfileScreen';
 
   static late String initialRoute;
 
@@ -73,8 +86,55 @@ abstract class AppRouter {
                 BlocProvider(
                   create: (context) => getIt<HomeCubit>()..fetchHomeProducts(),
                 ),
+                BlocProvider(create: (context) => getIt<ToggleFavoriteCubit>()),
               ],
               child: LayoutScreen(),
+            ),
+      ),
+
+      GoRoute(
+        path: productsScreen,
+        builder: (context, state) {
+          final data = state.extra! as Map<String, dynamic>;
+          return BlocProvider(
+            create:
+                (context) =>
+                    getIt<ProductsCubit>()..fetchProducts(data['id'] as int),
+            child: ProductsScreen(categoryName: data['name'] as String),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: productDetailsScreen,
+        builder: (context, state) {
+          final data = state.extra;
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: getIt<HomeCubit>()),
+              BlocProvider.value(value: getIt<ToggleFavoriteCubit>()),
+            ],
+            child: ProductDetailsScreen(model: data as ProductData),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: favoritesScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) => getIt<FavoriteCubit>()..fetchFavoriteProducts(),
+              child: FavoritesScreen(),
+            ),
+      ),
+
+      GoRoute(
+        path: profileScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<ProfileCubit>()..fetchProfileData(),
+              child: ProfileScreen(),
             ),
       ),
     ],

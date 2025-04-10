@@ -1,20 +1,21 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plaza/core/theming/colors.dart';
-import 'package:plaza/features/home/data/model/home_model.dart';
+import 'package:plaza/core/utils/app_router.dart';
+import 'package:plaza/features/products/data/model/products_model.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomeProductsItem extends StatelessWidget {
-  HomeProductsItem({super.key, required this.model});
-  HomeProductModel model;
+class ProductsItem extends StatelessWidget {
+  ProductsItem({super.key, required this.model});
+  ProductData model;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // ShopCubit.get(context).getProductData(model.id);
-        // navigateTo(context, ProductScreen());
+        GoRouter.of(context).push(AppRouter.productDetailsScreen, extra: model);
       },
       child: Container(
         color: Colors.white,
@@ -118,23 +119,7 @@ class HomeProductsItem extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                // IconButton(
-                //   onPressed: () {
-                //     // ShopCubit.get(context).changeToFavorite(model.id);
-                //     // print(model.id);
-                //   },
-                //   icon: Conditional.single(
-                //     context: context,
-                //     conditionBuilder:
-                //         (context) => ShopCubit.get(context).favorites[model.id],
-                //     widgetBuilder:
-                //         (context) => ShopCubit.get(context).favoriteIcon,
-                //     fallbackBuilder:
-                //         (context) => ShopCubit.get(context).unFavoriteIcon,
-                //   ),
-                //   padding: const EdgeInsets.all(0),
-                //   iconSize: 20,
-                // ),
+                // ToggleFavoriteIcon(id: model.id as int),
               ],
             ),
           ],

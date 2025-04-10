@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:plaza/core/helpers/cacheHelper.dart';
 import 'package:plaza/core/theming/themes.dart';
 import 'package:plaza/core/utils/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,9 +9,10 @@ import 'package:plaza/core/utils/service_locator.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppRouter.getInitialRoute();
   await setupServiceLocator();
+  await AppRouter.getInitialRoute();
   Bloc.observer = MyBlocObserver();
+  print('${await CacheHelper.getSecuredString('token')}');
 
   runApp(const MyApp());
 }
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: AppRouter.router,
-        title: 'plaza',
+        title: 'Shop Mart',
         theme: lightMode(),
         themeMode: ThemeMode.light,
       ),

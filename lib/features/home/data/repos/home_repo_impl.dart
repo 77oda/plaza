@@ -4,7 +4,6 @@ import 'package:plaza/core/networking/api_endPoints.dart';
 import 'package:plaza/core/networking/api_failures.dart';
 import 'package:plaza/core/networking/api_service.dart';
 import 'package:plaza/features/home/data/model/banners_model.dart';
-import 'package:plaza/features/categories/data/model/categories_model.dart';
 import 'package:plaza/features/home/data/model/home_model.dart';
 import 'package:plaza/features/home/data/repos/home_repo.dart';
 

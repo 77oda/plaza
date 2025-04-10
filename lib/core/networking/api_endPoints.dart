@@ -13,9 +13,9 @@ class ApiEndPoints {
 
   static const categories = 'categories';
 
-  static const categoriesDetails = 'products';
+  static const products = 'products';
 
-  static const prodectDetails = 'products/1';
+  // static const prodectDetails = 'products/1';
 
   static const search = 'products/search';
 

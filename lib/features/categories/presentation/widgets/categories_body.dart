@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plaza/core/widgets/divider.dart';
 import 'package:plaza/features/categories/presentation/widgets/categories_item.dart';
 import 'package:plaza/features/categories/presentation/widgets/categories_shimmer.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
-import 'package:shimmer/shimmer.dart';
 
 class CategoriesBody extends StatelessWidget {
   const CategoriesBody({super.key});
@@ -23,12 +23,7 @@ class CategoriesBody extends StatelessWidget {
                 (context, index) => CategoriesItem(
                   model: state.categoriesModel.data!.data![index],
                 ),
-            separatorBuilder:
-                (context, index) => Container(
-                  color: Colors.grey[500],
-                  height: 1.h,
-                  width: double.infinity,
-                ),
+            separatorBuilder: (context, index) => myDivider(),
             itemCount: state.categoriesModel.data!.data!.length,
           );
         else
