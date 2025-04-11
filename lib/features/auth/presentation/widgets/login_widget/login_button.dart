@@ -20,8 +20,7 @@ class LoginButton extends StatelessWidget {
           } else {
             showToast(state.loginUserModel.message);
           }
-        }
-        if (state is LoginErrorState) {
+        } else if (state is LoginErrorState) {
           showToast(state.error);
         }
       },

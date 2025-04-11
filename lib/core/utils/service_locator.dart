@@ -10,11 +10,12 @@ import 'package:plaza/features/categories/data/repos/categories_repo_impl.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
 import 'package:plaza/features/home/data/repos/home_repo_impl.dart';
 import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
-import 'package:plaza/features/home/logic/home_cubit/home_cubit.dart';
+import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 import 'package:plaza/features/products/data/repos/products_repo_impl.dart';
 import 'package:plaza/features/products/logic/products_cubit/products_cubit.dart';
 import 'package:plaza/features/Favorites/logic/favorites_cubit/favorites_cubit.dart';
 import 'package:plaza/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:plaza/features/profile/logic/change_pass_cubit/change_pass_cubit.dart';
 import 'package:plaza/features/profile/logic/profile_cubit/profile_cubit.dart';
 
 final getIt = GetIt.instance;
@@ -47,8 +48,8 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory<BannersCubit>(
     () => BannersCubit(getIt<HomeRepoImpl>()),
   );
-  getIt.registerLazySingleton<HomeCubit>(
-    () => HomeCubit(getIt<HomeRepoImpl>()),
+  getIt.registerLazySingleton<AllProductsCubit>(
+    () => AllProductsCubit(getIt<HomeRepoImpl>()),
   );
 
   //categories
@@ -69,7 +70,10 @@ Future<void> setupServiceLocator() async {
 
   // toggleFavorite
   getIt.registerFactory<ToggleFavoriteCubit>(
-    () => ToggleFavoriteCubit(getIt<FavoritesRepoImpl>(), getIt<HomeCubit>()),
+    () => ToggleFavoriteCubit(
+      getIt<FavoritesRepoImpl>(),
+      getIt<AllProductsCubit>(),
+    ),
   );
 
   //favorites
@@ -87,5 +91,10 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerFactory<ProfileCubit>(
     () => ProfileCubit(getIt<ProfileRepoImpl>()),
+  );
+
+  //changePassword
+  getIt.registerFactory<ChangePassCubit>(
+    () => ChangePassCubit(getIt<ProfileRepoImpl>()),
   );
 }

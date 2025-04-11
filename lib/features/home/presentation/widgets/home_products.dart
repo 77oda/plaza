@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaza/features/home/logic/home_cubit/home_cubit.dart';
-import 'package:plaza/features/home/logic/home_cubit/home_state.dart';
+
+import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
+import 'package:plaza/features/home/logic/all_products_cubit/all_products_state.dart';
 import 'package:plaza/features/products/presentation/widgets/widget_products/products_item.dart';
 import 'package:plaza/features/products/presentation/widgets/widget_products/products_shimmer.dart';
 
@@ -10,18 +11,21 @@ class HomeProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<AllProductsCubit, AllProductsState>(
       buildWhen:
           (previous, current) =>
-              current is HomeSuccessState ||
-              current is HomeLoadingState ||
-              current is HomeErrorState,
+              current is AllProductsSuccessState ||
+              current is AllProductsLoadingState ||
+              current is AllProductsErrorState,
       builder: (context, state) {
-        if (state is HomeLoadingState)
+        if (state is AllProductsLoadingState)
           return ProductsShimmer();
-        else if (state is HomeErrorState)
+        else if (state is AllProductsErrorState)
           return Center(child: Text(state.error));
-        else if (state is HomeSuccessState)
+        else if (state is AllProductsSuccessState) {
+          final allProducts = state.productsModel.data!.data!;
+          final productsWithDiscount =
+              allProducts.where((e) => e.discount != 0).toList();
           return GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
@@ -30,12 +34,11 @@ class HomeProducts extends StatelessWidget {
             childAspectRatio: 0.74,
             mainAxisSpacing: 2,
             children: List.generate(
-              state.homeModel.data!.products.length,
-              (index) =>
-                  ProductsItem(model: state.homeModel.data!.products[index]),
+              productsWithDiscount.length,
+              (index) => ProductsItem(model: productsWithDiscount[index]),
             ),
           );
-        else
+        } else
           return const SizedBox();
       },
     );

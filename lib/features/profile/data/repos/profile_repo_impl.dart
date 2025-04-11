@@ -21,4 +21,41 @@ class ProfileRepoImpl extends ProfileRepo {
       return left(ServerFailure(error.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> updateProfileData(
+    String name,
+    String phone,
+    String email,
+  ) async {
+    try {
+      final response = await apiService.putData(
+        endPoint: ApiEndPoints.updateProfile,
+        data: {'name': name, 'phone': phone, 'email': email},
+      );
+      return right(UserModel.fromJson(response.data));
+    } on DioException catch (error) {
+      return left(ServerFailure.fromDioError(error));
+    } catch (error) {
+      return left(ServerFailure(error.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserModel>> changePass(
+    String currentPass,
+    String newPass,
+  ) async {
+    try {
+      final response = await apiService.postData(
+        endPoint: ApiEndPoints.changePassword,
+        data: {'current_password': currentPass, 'new_password': newPass},
+      );
+      return right(UserModel.fromJson(response.data));
+    } on DioException catch (error) {
+      return left(ServerFailure.fromDioError(error));
+    } catch (error) {
+      return left(ServerFailure(error.toString()));
+    }
+  }
 }

@@ -21,7 +21,7 @@ class RegisterButton extends StatelessWidget {
           } else {
             showToast(state.userModel.message);
           }
-        if (state is RegisterErrorState) {
+        else if (state is RegisterErrorState) {
           showToast(state.error);
         }
       },

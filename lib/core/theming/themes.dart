@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/theming/colors.dart';
 
 ThemeData lightMode() => ThemeData(
@@ -60,6 +61,9 @@ ThemeData lightMode() => ThemeData(
     selectionHandleColor:
         ColorsManager.primaryColor, // 🔴 لون النقطة الكبيرة تحت المؤشر
   ),
+  // buttonTheme: ButtonThemeData(
+  //   buttonColor: ColorsManager.primaryColor,
+  // ),
 );
 
 // ThemeData darkMode() => ThemeData(

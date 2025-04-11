@@ -7,15 +7,13 @@ class ApiEndPoints {
 
   static const profile = 'profile';
 
-  static const updateProfile = 'update-profile';
+  static const changePassword = 'change-password';
 
-  static const home = 'home';
+  static const updateProfile = 'update-profile';
 
   static const categories = 'categories';
 
   static const products = 'products';
-
-  // static const prodectDetails = 'products/1';
 
   static const search = 'products/search';
 

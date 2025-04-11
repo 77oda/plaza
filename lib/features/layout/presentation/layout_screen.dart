@@ -37,7 +37,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: layoutAppBar(),
+        appBar: layoutAppBar(context),
         body: layoutPage[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,

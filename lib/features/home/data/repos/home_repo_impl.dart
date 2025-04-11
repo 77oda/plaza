@@ -6,6 +6,7 @@ import 'package:plaza/core/networking/api_service.dart';
 import 'package:plaza/features/home/data/model/banners_model.dart';
 import 'package:plaza/features/home/data/model/home_model.dart';
 import 'package:plaza/features/home/data/repos/home_repo.dart';
+import 'package:plaza/features/products/data/model/products_model.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
@@ -25,10 +26,12 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, HomeModel>> fetchHomeProducts() async {
+  Future<Either<Failure, ProductsModel>> fetchAllProducts() async {
     try {
-      final response = await apiService.getData(endPoint: ApiEndPoints.home);
-      return right(HomeModel.fromJson(response.data));
+      final response = await apiService.getData(
+        endPoint: ApiEndPoints.products,
+      );
+      return right(ProductsModel.fromJson(response.data));
     } on DioException catch (error) {
       return left(ServerFailure.fromDioError(error));
     } catch (error) {

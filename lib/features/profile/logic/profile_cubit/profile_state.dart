@@ -20,3 +20,15 @@ class ProfileErrorState extends ProfileState {
   final String error;
   const ProfileErrorState(this.error);
 }
+
+class UpdateProfileLoadingState extends ProfileState {}
+
+class UpdateProfileSuccessState extends ProfileState {
+  final UserModel userModel;
+  const UpdateProfileSuccessState(this.userModel);
+}
+
+class UpdateProfileErrorState extends ProfileState {
+  final String error;
+  const UpdateProfileErrorState(this.error);
+}

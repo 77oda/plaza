@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:plaza/features/auth/data/model/user_model.dart';
 import 'package:plaza/features/profile/data/repos/profile_repo.dart';
-
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
@@ -15,6 +14,19 @@ class ProfileCubit extends Cubit<ProfileState> {
     result.fold(
       (failure) => emit(ProfileErrorState(failure.errMessage)),
       (profile) => emit(ProfileSuccessState(profile)),
+    );
+  }
+
+  Future<void> updateProfileData(
+    String name,
+    String phone,
+    String email,
+  ) async {
+    emit(UpdateProfileLoadingState());
+    final result = await profileRepo.updateProfileData(name, phone, email);
+    result.fold(
+      (failure) => emit(UpdateProfileErrorState(failure.errMessage)),
+      (profile) => emit(UpdateProfileSuccessState(profile)),
     );
   }
 }

@@ -11,15 +11,18 @@ import 'package:plaza/features/auth/presentation/Login_Screen.dart';
 import 'package:plaza/features/auth/presentation/register_screen.dart';
 import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
-import 'package:plaza/features/home/logic/home_cubit/home_cubit.dart';
+import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 import 'package:plaza/features/layout/presentation/layout_screen.dart';
 import 'package:plaza/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:plaza/features/products/data/model/products_model.dart';
 import 'package:plaza/features/products/logic/products_cubit/products_cubit.dart';
 import 'package:plaza/features/products/presentation/product_details_screen.dart';
 import 'package:plaza/features/products/presentation/products_screen.dart';
+import 'package:plaza/features/profile/logic/change_pass_cubit/change_pass_cubit.dart';
 import 'package:plaza/features/profile/logic/profile_cubit/profile_cubit.dart';
+import 'package:plaza/features/profile/presentation/change_pass_screen.dart';
 import 'package:plaza/features/profile/presentation/profile_screen.dart';
+import 'package:plaza/features/search/presentation/search_screen.dart';
 
 abstract class AppRouter {
   static const onBoardingScreen = '/OnBoardingScreen';
@@ -30,6 +33,8 @@ abstract class AppRouter {
   static const productDetailsScreen = '/ProductDetailsScreen';
   static const favoritesScreen = '/FavoritesScreen';
   static const profileScreen = '/ProfileScreen';
+  static const changePassScreen = '/ChangePassScreen';
+  static const searchScreen = '/SearchScreen';
 
   static late String initialRoute;
 
@@ -84,7 +89,9 @@ abstract class AppRouter {
                       (context) => getIt<CategoriesCubit>()..fetchCategories(),
                 ),
                 BlocProvider(
-                  create: (context) => getIt<HomeCubit>()..fetchHomeProducts(),
+                  create:
+                      (context) =>
+                          getIt<AllProductsCubit>()..fetchAllProducts(),
                 ),
                 BlocProvider(create: (context) => getIt<ToggleFavoriteCubit>()),
               ],
@@ -111,7 +118,7 @@ abstract class AppRouter {
           final data = state.extra;
           return MultiBlocProvider(
             providers: [
-              BlocProvider.value(value: getIt<HomeCubit>()),
+              BlocProvider.value(value: getIt<AllProductsCubit>()),
               BlocProvider.value(value: getIt<ToggleFavoriteCubit>()),
             ],
             child: ProductDetailsScreen(model: data as ProductData),
@@ -135,6 +142,24 @@ abstract class AppRouter {
             (context, state) => BlocProvider(
               create: (context) => getIt<ProfileCubit>()..fetchProfileData(),
               child: ProfileScreen(),
+            ),
+      ),
+
+      GoRoute(
+        path: changePassScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<ChangePassCubit>(),
+              child: ChangePassScreen(),
+            ),
+      ),
+
+      GoRoute(
+        path: searchScreen,
+        builder:
+            (context, state) => BlocProvider.value(
+              value: getIt<AllProductsCubit>(),
+              child: SearchScreen(),
             ),
       ),
     ],

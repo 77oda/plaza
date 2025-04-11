@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_cubit.dart';
-import 'package:plaza/features/home/logic/home_cubit/home_cubit.dart';
+import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 import 'package:plaza/features/products/presentation/widgets/widget_product_details/toggle_favorite_icon.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
