@@ -20,4 +20,6 @@ class ApiEndPoints {
   static const favorites = 'favorites';
 
   static const cart = 'carts';
+
+  static const notifications = 'notifications';
 }

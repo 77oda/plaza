@@ -11,6 +11,11 @@ class AllProductsCubit extends Cubit<AllProductsState> {
   Map<dynamic, dynamic> favorites = {};
   ProductsModel? allProducts;
 
+  List<ProductData> get productsWithDiscount {
+    return allProducts?.data?.data?.where((e) => e.discount != 0).toList() ??
+        [];
+  }
+
   Future<void> fetchAllProducts() async {
     emit(AllProductsLoadingState());
     final result = await homeRepo.fetchAllProducts();

@@ -23,9 +23,8 @@ class HomeProducts extends StatelessWidget {
         else if (state is AllProductsErrorState)
           return Center(child: Text(state.error));
         else if (state is AllProductsSuccessState) {
-          final allProducts = state.productsModel.data!.data!;
-          final productsWithDiscount =
-              allProducts.where((e) => e.discount != 0).toList();
+          var productsWithDiscount =
+              context.read<AllProductsCubit>().productsWithDiscount;
           return GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,

@@ -26,24 +26,27 @@ class ProductsItem extends StatelessWidget {
             Stack(
               alignment: AlignmentDirectional.bottomStart,
               children: [
-                CachedNetworkImage(
-                  imageUrl: "${model.image}",
-                  height: 150.h,
-                  width: double.infinity,
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                  placeholder:
-                      (context, url) => Shimmer(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [Colors.grey, Colors.white, Colors.grey],
+                Hero(
+                  tag: model.id as int,
+                  child: CachedNetworkImage(
+                    imageUrl: "${model.image}",
+                    height: 150.h,
+                    width: double.infinity,
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    placeholder:
+                        (context, url) => Shimmer(
+                          gradient: const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Colors.grey, Colors.white, Colors.grey],
+                          ),
+                          child: Container(
+                            height: 150.h,
+                            width: 150.w,
+                            color: Colors.grey[300],
+                          ),
                         ),
-                        child: Container(
-                          height: 150.h,
-                          width: 150.w,
-                          color: Colors.grey[300],
-                        ),
-                      ),
+                  ),
                 ),
                 if (model.discount != 0)
                   Container(

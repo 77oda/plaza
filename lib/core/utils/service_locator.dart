@@ -11,6 +11,8 @@ import 'package:plaza/features/categories/logic/categories_cubit/categories_cubi
 import 'package:plaza/features/home/data/repos/home_repo_impl.dart';
 import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
 import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
+import 'package:plaza/features/notifications/data/repos/notifications_repo_impl.dart';
+import 'package:plaza/features/notifications/logic/notifications_cubit/notifications_cubit.dart';
 import 'package:plaza/features/products/data/repos/products_repo_impl.dart';
 import 'package:plaza/features/products/logic/products_cubit/products_cubit.dart';
 import 'package:plaza/features/Favorites/logic/favorites_cubit/favorites_cubit.dart';
@@ -96,5 +98,13 @@ Future<void> setupServiceLocator() async {
   //changePassword
   getIt.registerFactory<ChangePassCubit>(
     () => ChangePassCubit(getIt<ProfileRepoImpl>()),
+  );
+
+  //notifications
+  getIt.registerLazySingleton<NotificationsRepoImpl>(
+    () => NotificationsRepoImpl(getIt<ApiService>()),
+  );
+  getIt.registerFactory<NotificationsCubit>(
+    () => NotificationsCubit(getIt<NotificationsRepoImpl>()),
   );
 }

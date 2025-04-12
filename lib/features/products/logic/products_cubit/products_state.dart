@@ -21,5 +21,3 @@ class ProductsErrorState extends ProductsState {
   final String error;
   const ProductsErrorState(this.error);
 }
-
-class ToggleState extends ProductsState {}

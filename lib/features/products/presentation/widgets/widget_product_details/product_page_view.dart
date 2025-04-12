@@ -1,9 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_cubit.dart';
-import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 import 'package:plaza/features/products/presentation/widgets/widget_product_details/toggle_favorite_icon.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -27,19 +24,26 @@ class ProductPageView extends StatelessWidget {
               PageView.builder(
                 controller: productImages,
                 itemBuilder:
-                    (context, index) => CachedNetworkImage(
-                      imageUrl: images![index],
-                      fit: BoxFit.contain,
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                      placeholder:
-                          (context, url) => Shimmer(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [Colors.grey, Colors.white, Colors.grey],
+                    (context, index) => Hero(
+                      tag: id,
+                      child: CachedNetworkImage(
+                        imageUrl: images![index],
+                        fit: BoxFit.contain,
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        placeholder:
+                            (context, url) => Shimmer(
+                              gradient: const LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colors.grey,
+                                  Colors.white,
+                                  Colors.grey,
+                                ],
+                              ),
+                              child: Container(color: Colors.white),
                             ),
-                            child: Container(color: Colors.white),
-                          ),
+                      ),
                     ),
                 itemCount: images!.length,
               ),

@@ -21,20 +21,23 @@ class SearchItem extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         child: Row(
           children: [
-            CachedNetworkImage(
-              imageUrl: '${model.image}',
-              width: 100.w,
-              height: 100.h,
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              placeholder:
-                  (context, url) => Shimmer(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Colors.grey, Colors.white, Colors.grey],
+            Hero(
+              tag: model.id as int,
+              child: CachedNetworkImage(
+                imageUrl: '${model.image}',
+                width: 120.w,
+                height: 100.h,
+                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder:
+                    (context, url) => Shimmer(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.grey, Colors.white, Colors.grey],
+                      ),
+                      child: Container(color: Colors.grey),
                     ),
-                    child: Container(color: Colors.grey),
-                  ),
+              ),
             ),
             SizedBox(width: 10.w),
             Expanded(

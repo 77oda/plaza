@@ -13,6 +13,8 @@ import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
 import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 import 'package:plaza/features/layout/presentation/layout_screen.dart';
+import 'package:plaza/features/notifications/logic/notifications_cubit/notifications_cubit.dart';
+import 'package:plaza/features/notifications/presentation/notifications_screen.dart';
 import 'package:plaza/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:plaza/features/products/data/model/products_model.dart';
 import 'package:plaza/features/products/logic/products_cubit/products_cubit.dart';
@@ -35,6 +37,7 @@ abstract class AppRouter {
   static const profileScreen = '/ProfileScreen';
   static const changePassScreen = '/ChangePassScreen';
   static const searchScreen = '/SearchScreen';
+  static const notificationsScreen = '/NotificationsScreen';
 
   static late String initialRoute;
 
@@ -160,6 +163,17 @@ abstract class AppRouter {
             (context, state) => BlocProvider.value(
               value: getIt<AllProductsCubit>(),
               child: SearchScreen(),
+            ),
+      ),
+
+      GoRoute(
+        path: notificationsScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create:
+                  (context) =>
+                      getIt<NotificationsCubit>()..fetchNotifications(),
+              child: NotificationsScreen(),
             ),
       ),
     ],

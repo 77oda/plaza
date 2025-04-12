@@ -9,7 +9,9 @@ AppBar layoutAppBar(context) {
     title: AppLogo(),
     actions: [
       IconButton(
-        onPressed: () {},
+        onPressed: () {
+          GoRouter.of(context).push(AppRouter.notificationsScreen);
+        },
         icon: const Icon(Icons.notifications_none_outlined),
       ),
       IconButton(
