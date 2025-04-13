@@ -59,17 +59,15 @@ class ApiService {
     required String endPoint,
     Map<String, dynamic>? query,
     Map<String, dynamic>? data,
-    // String? token,
   }) async {
     return await dio.put(endPoint, queryParameters: query, data: data);
   }
 
   Future<Response> deleteData({
     required String endPoint,
-    // String? token,
+    Map<String, dynamic>? query,
   }) async {
-    // dio.options.headers = {'lang': 'en', 'Authorization': '$token'};
-    return await dio.delete(endPoint);
+    return await dio.delete(endPoint, queryParameters: query);
   }
 
   void setTokenAfterLogin(String token) {

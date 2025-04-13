@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plaza/core/utils/app_router.dart';
 import 'package:plaza/core/widgets/divider.dart';
+import 'package:plaza/features/address/data/model/address_model.dart';
+import 'package:plaza/features/address/logic/address_cubit/address_cubit.dart';
 
 class AccountData extends StatelessWidget {
   const AccountData({super.key});
@@ -47,8 +50,8 @@ class AccountData extends StatelessWidget {
         ),
         myDivider(),
         InkWell(
-          onTap: () {
-            // navigateTo(context, AddressesScreen());
+          onTap: () async {
+            GoRouter.of(context).push(AppRouter.addressScreen);
           },
           child: Container(
             color: Colors.white,
@@ -58,7 +61,7 @@ class AccountData extends StatelessWidget {
                 Icon(Icons.location_on_outlined, color: Colors.green),
                 SizedBox(width: 15.w),
                 Text(
-                  'Addresses',
+                  'Address',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.sp,
@@ -83,7 +86,6 @@ class AccountData extends StatelessWidget {
               children: [
                 Icon(Icons.person_outline, color: Colors.green),
                 SizedBox(width: 15.w),
-
                 Text(
                   'Profile',
                   style: TextStyle(

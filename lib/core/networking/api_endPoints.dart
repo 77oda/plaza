@@ -22,4 +22,6 @@ class ApiEndPoints {
   static const cart = 'carts';
 
   static const notifications = 'notifications';
+
+  static const address = 'addresses';
 }

@@ -28,7 +28,7 @@ Widget customFormField({
   onTap: onTap,
   validator: validate,
   textCapitalization: TextCapitalization.words,
-  textAlignVertical: TextAlignVertical.center,
+  // textAlignVertical: TextAlignVertical.center, jujjjjjjjjjjjjjjjjjj
   style: Theme.of(context).textTheme.bodyLarge,
   initialValue: initialValue,
 

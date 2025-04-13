@@ -5,6 +5,9 @@ import 'package:plaza/core/utils/service_locator.dart';
 import 'package:plaza/features/Favorites/logic/favorites_cubit/favorites_cubit.dart';
 import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_cubit.dart';
 import 'package:plaza/features/Favorites/presentation/favorites_screen.dart';
+import 'package:plaza/features/address/logic/address_cubit/address_cubit.dart';
+import 'package:plaza/features/address/presentation/add_address_screen.dart';
+import 'package:plaza/features/address/presentation/address_screen.dart';
 import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
 import 'package:plaza/features/auth/presentation/Login_Screen.dart';
@@ -38,6 +41,7 @@ abstract class AppRouter {
   static const changePassScreen = '/ChangePassScreen';
   static const searchScreen = '/SearchScreen';
   static const notificationsScreen = '/NotificationsScreen';
+  static const addressScreen = '/AddressScreen';
 
   static late String initialRoute;
 
@@ -174,6 +178,15 @@ abstract class AppRouter {
                   (context) =>
                       getIt<NotificationsCubit>()..fetchNotifications(),
               child: NotificationsScreen(),
+            ),
+      ),
+
+      GoRoute(
+        path: addressScreen,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => getIt<AddressCubit>()..fetchAddress(),
+              child: AddressScreen(),
             ),
       ),
     ],

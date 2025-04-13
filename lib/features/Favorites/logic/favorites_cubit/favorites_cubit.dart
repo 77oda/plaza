@@ -15,14 +15,17 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   Future<void> fetchFavoriteProducts() async {
     emit(FavoriteLoadingState());
     final result = await favoritesRepo.fetchFavoriteProducts();
-    result.fold((failure) => emit(FavoriteErrorState(failure.errMessage)), (
-      favorite,
-    ) {
-      for (var element in favorite.data!.data!) {
-        favorites.add(element);
-      }
-      emit(FavoriteSuccessState(favorite));
-    });
+    result.fold(
+      (failure) {
+        if (!isClosed) emit(FavoriteErrorState(failure.errMessage));
+      },
+      (favorite) {
+        for (var element in favorite.data!.data!) {
+          favorites.add(element);
+        }
+        if (!isClosed) emit(FavoriteSuccessState(favorite));
+      },
+    );
   }
 
   void removeFavoriteLocally(int productId) {

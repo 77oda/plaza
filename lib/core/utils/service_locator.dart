@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:plaza/core/networking/api_service.dart';
 import 'package:plaza/features/Favorites/data/repos/favorites_repo_impl.dart';
 import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_cubit.dart';
+import 'package:plaza/features/address/data/repos/address_repo_impl.dart';
+import 'package:plaza/features/address/logic/address_cubit/address_cubit.dart';
 import 'package:plaza/features/auth/data/repos/login_repo/login_repo_impl.dart';
 import 'package:plaza/features/auth/data/repos/register_repo/register_repo_impl.dart';
 import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
@@ -106,5 +108,13 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerFactory<NotificationsCubit>(
     () => NotificationsCubit(getIt<NotificationsRepoImpl>()),
+  );
+
+  //address
+  getIt.registerLazySingleton<AddressRepoImpl>(
+    () => AddressRepoImpl(getIt<ApiService>()),
+  );
+  getIt.registerFactory<AddressCubit>(
+    () => AddressCubit(getIt<AddressRepoImpl>()),
   );
 }
