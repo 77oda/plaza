@@ -33,16 +33,19 @@ class DeleteAddressErrorState extends AddressState {
   const DeleteAddressErrorState(this.error);
 }
 
-class EditAddressLoadingState extends AddressState {}
+class SaveAddressLoadingState extends AddressState {}
 
-class EditAddressSuccessState extends AddressState {
-  final EditAddressModel addressModel;
-  const EditAddressSuccessState(this.addressModel);
+class SaveAddressSuccessState extends AddressState {
+  final AddressData addressData;
+  const SaveAddressSuccessState(this.addressData);
 }
 
-class EditAddressErrorState extends AddressState {
+class SaveAddressErrorState extends AddressState {
   final String error;
-  const EditAddressErrorState(this.error);
+  const SaveAddressErrorState(this.error);
 }
 
-class EditAddressState extends AddressState {}
+class ButtomActionState extends AddressState {
+  final AddressData addressData;
+  const ButtomActionState(this.addressData);
+}

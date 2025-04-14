@@ -44,17 +44,42 @@ class AddressCubit extends Cubit<AddressState> {
     String details,
     String notes,
   ) async {
-    emit(EditAddressLoadingState());
+    emit(SaveAddressLoadingState());
     final result = await addressRepo.addAddress(city, region, details, notes);
-    if (!isClosed)
-      result.fold(
-        (failure) {
-          print(failure.errMessage);
-          if (!isClosed) emit(EditAddressErrorState(failure.errMessage));
-        },
-        (address) {
-          if (!isClosed) emit(EditAddressSuccessState(address));
-        },
-      );
+    result.fold(
+      (failure) {
+        if (!isClosed) emit(SaveAddressErrorState(failure.errMessage));
+      },
+      (address) {
+        if (!isClosed)
+          emit(SaveAddressSuccessState(address.data as AddressData));
+      },
+    );
+  }
+
+  Future<void> editAddress(
+    int id,
+    String city,
+    String region,
+    String details,
+    String notes,
+  ) async {
+    emit(SaveAddressLoadingState());
+    final result = await addressRepo.editAddress(
+      id,
+      city,
+      region,
+      details,
+      notes,
+    );
+    result.fold(
+      (failure) {
+        if (!isClosed) emit(SaveAddressErrorState(failure.errMessage));
+      },
+      (address) {
+        if (!isClosed)
+          emit(SaveAddressSuccessState(address.data as AddressData));
+      },
+    );
   }
 }

@@ -65,4 +65,33 @@ class AddressRepoImpl extends AddressRepo {
       return left(ServerFailure(error.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, EditAddressModel>> editAddress(
+    int id,
+    String city,
+    String region,
+    String details,
+    String notes,
+  ) async {
+    try {
+      final response = await apiService.putData(
+        endPoint: '${ApiEndPoints.address}/$id',
+        data: {
+          'name': 'Address',
+          'city': city,
+          'region': region,
+          'details': details,
+          'notes': notes,
+          'latitude': 30.0,
+          'longitude': 30.0,
+        },
+      );
+      return right(EditAddressModel.fromJson(response.data));
+    } on DioException catch (error) {
+      return left(ServerFailure.fromDioError(error));
+    } catch (error) {
+      return left(ServerFailure(error.toString()));
+    }
+  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaza/core/widgets/custom_toast.dart';
 import 'package:plaza/features/address/data/model/address_model.dart';
 import 'package:plaza/features/address/logic/address_cubit/address_cubit.dart';
-import 'package:plaza/features/address/presentation/add_address_screen.dart';
+import 'package:plaza/features/address/presentation/save_address_screen.dart';
 import 'package:plaza/features/address/presentation/show_address_screen.dart';
 
 class AddressBody extends StatelessWidget {
@@ -23,9 +23,8 @@ class AddressBody extends StatelessWidget {
               current is AddressLoadingState ||
               current is AddressErrorState ||
               current is DeleteAddressSuccessState ||
-              current is EditAddressSuccessState ||
-              current is EditAddressState,
-
+              current is SaveAddressSuccessState ||
+              current is ButtomActionState,
       builder: (context, state) {
         if (state is AddressLoadingState)
           return Center(child: CircularProgressIndicator());
@@ -33,17 +32,17 @@ class AddressBody extends StatelessWidget {
           return Center(child: Text(state.error));
         else if (state is AddressSuccessState) {
           if (state.addressModel.data!.data!.isEmpty)
-            return AddAddressScreen();
+            return SaveAddressScreen(isEdit: false);
           else
             return ShowAddressScreen(model: state.addressModel.data!.data![0]);
         } else if (state is DeleteAddressSuccessState)
-          return AddAddressScreen();
-        else if (state is EditAddressSuccessState)
-          return ShowAddressScreen(
-            model: state.addressModel.data as AddressData,
-          );
+          return SaveAddressScreen(isEdit: false);
+        else if (state is SaveAddressSuccessState)
+          return ShowAddressScreen(model: state.addressData);
+        else if (state is ButtomActionState)
+          return SaveAddressScreen(isEdit: true, model: state.addressData);
         else
-          return AddAddressScreen();
+          return const SizedBox();
       },
     );
   }

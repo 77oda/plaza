@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/theming/colors.dart';
 import 'package:plaza/features/address/data/model/address_model.dart';
+import 'package:plaza/features/address/data/model/edit_address_model.dart';
 import 'package:plaza/features/address/logic/address_cubit/address_cubit.dart';
 
 class AddressTitleBar extends StatelessWidget {
@@ -43,7 +44,7 @@ class AddressTitleBar extends StatelessWidget {
           Container(height: 25.h, width: 2.w, color: Colors.grey[300]),
           TextButton(
             onPressed: () {
-              context.read<AddressCubit>().emit(EditAddressState());
+              context.read<AddressCubit>().emit(ButtomActionState(model));
             },
             child: Row(
               children: [

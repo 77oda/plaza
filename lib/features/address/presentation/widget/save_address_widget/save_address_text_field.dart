@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/widgets/custom_form_field.dart';
 
-class AddAddressTextField extends StatelessWidget {
-  const AddAddressTextField({
+class SaveAddressTextField extends StatelessWidget {
+  const SaveAddressTextField({
     super.key,
     required this.cityControl,
     required this.regionControl,

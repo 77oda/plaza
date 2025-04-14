@@ -11,5 +11,12 @@ abstract class AddressRepo {
     String details,
     String notes,
   );
+  Future<Either<Failure, EditAddressModel>> editAddress(
+    int id,
+    String city,
+    String region,
+    String details,
+    String notes,
+  );
   Future<Either<Failure, EditAddressModel>> deleteAddress(int id);
 }
