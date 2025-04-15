@@ -12,6 +12,7 @@ import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
 import 'package:plaza/features/auth/presentation/Login_Screen.dart';
 import 'package:plaza/features/auth/presentation/register_screen.dart';
+import 'package:plaza/features/cart/logic/cart_cubit/cart_cubit.dart';
 import 'package:plaza/features/home/logic/banners_cubit/banners_cubit.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
 import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
@@ -101,6 +102,9 @@ abstract class AppRouter {
                           getIt<AllProductsCubit>()..fetchAllProducts(),
                 ),
                 BlocProvider(create: (context) => getIt<ToggleFavoriteCubit>()),
+                BlocProvider(
+                  create: (context) => getIt<CartCubit>()..fetchCartproducts(),
+                ),
               ],
               child: LayoutScreen(),
             ),
@@ -125,6 +129,7 @@ abstract class AppRouter {
           final data = state.extra;
           return MultiBlocProvider(
             providers: [
+              BlocProvider.value(value: getIt<CartCubit>()),
               BlocProvider.value(value: getIt<AllProductsCubit>()),
               BlocProvider.value(value: getIt<ToggleFavoriteCubit>()),
             ],
@@ -136,9 +141,15 @@ abstract class AppRouter {
       GoRoute(
         path: favoritesScreen,
         builder:
-            (context, state) => BlocProvider(
-              create:
-                  (context) => getIt<FavoriteCubit>()..fetchFavoriteProducts(),
+            (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create:
+                      (context) =>
+                          getIt<FavoriteCubit>()..fetchFavoriteProducts(),
+                ),
+                BlocProvider.value(value: getIt<AllProductsCubit>()),
+              ],
               child: FavoritesScreen(),
             ),
       ),

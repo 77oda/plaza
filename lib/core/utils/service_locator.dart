@@ -8,6 +8,8 @@ import 'package:plaza/features/auth/data/repos/login_repo/login_repo_impl.dart';
 import 'package:plaza/features/auth/data/repos/register_repo/register_repo_impl.dart';
 import 'package:plaza/features/auth/logic/login_cubit/login_cubit.dart';
 import 'package:plaza/features/auth/logic/register_cubit/register_cubit.dart';
+import 'package:plaza/features/cart/data/repos/cart_repo_impl.dart';
+import 'package:plaza/features/cart/logic/cart_cubit/cart_cubit.dart';
 import 'package:plaza/features/categories/data/repos/categories_repo_impl.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
 import 'package:plaza/features/home/data/repos/home_repo_impl.dart';
@@ -116,5 +118,13 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerFactory<AddressCubit>(
     () => AddressCubit(getIt<AddressRepoImpl>()),
+  );
+
+  //carts
+  getIt.registerLazySingleton<CartRepoImpl>(
+    () => CartRepoImpl(getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<CartCubit>(
+    () => CartCubit(getIt<CartRepoImpl>(), getIt<AllProductsCubit>()),
   );
 }

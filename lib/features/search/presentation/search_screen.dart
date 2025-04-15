@@ -38,7 +38,7 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     searchController.addListener(() {
       if (_debounce?.isActive ?? false) _debounce!.cancel();
-      _debounce = Timer(const Duration(milliseconds: 500), () {
+      _debounce = Timer(const Duration(milliseconds: 300), () {
         setState(() {
           searchedProducts = searchProducts(searchController.text) ?? [];
         });

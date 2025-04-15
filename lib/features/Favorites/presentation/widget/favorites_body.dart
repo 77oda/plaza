@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaza/features/Favorites/data/model/favorite_model.dart';
 import 'package:plaza/features/Favorites/logic/favorites_cubit/favorites_cubit.dart';
 import 'package:plaza/features/Favorites/logic/favorites_cubit/favorites_state.dart';
 import 'package:plaza/features/Favorites/presentation/widget/favorites_num.dart';

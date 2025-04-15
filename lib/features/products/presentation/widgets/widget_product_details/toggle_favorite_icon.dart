@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaza/features/Favorites/data/model/toggle_favorite_cubit/toggle_favorite_state.dart';
 import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_cubit.dart';
+import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_state.dart';
 import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 
 class ToggleFavoriteIcon extends StatelessWidget {

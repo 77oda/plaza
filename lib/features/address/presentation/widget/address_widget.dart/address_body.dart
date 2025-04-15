@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaza/core/widgets/custom_toast.dart';
-import 'package:plaza/features/address/data/model/address_model.dart';
 import 'package:plaza/features/address/logic/address_cubit/address_cubit.dart';
 import 'package:plaza/features/address/presentation/save_address_screen.dart';
 import 'package:plaza/features/address/presentation/show_address_screen.dart';

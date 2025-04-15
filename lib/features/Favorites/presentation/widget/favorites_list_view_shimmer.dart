@@ -30,7 +30,7 @@ class FavoritesListViewShimmer extends StatelessWidget {
                       children: [
                         Container(
                           width: 100.w,
-                          height: 100.h,
+                          height: 120.h,
                           color: Colors.grey,
                         ),
                         SizedBox(width: 10.w),
@@ -70,6 +70,7 @@ class FavoritesListViewShimmer extends StatelessWidget {
                   ),
                   Spacer(),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         width: 24.w,
@@ -81,17 +82,6 @@ class FavoritesListViewShimmer extends StatelessWidget {
                       ),
                       SizedBox(width: 5.w),
                       Container(width: 80.w, height: 14.h, color: Colors.grey),
-                      Spacer(),
-                      Container(
-                        width: 24.w,
-                        height: 24.h,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      SizedBox(width: 5.w),
-                      Container(width: 60.w, height: 14.h, color: Colors.grey),
                     ],
                   ),
                 ],

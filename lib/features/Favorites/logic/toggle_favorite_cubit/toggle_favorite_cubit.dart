@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:plaza/features/Favorites/data/model/toggle_favorite_cubit/toggle_favorite_state.dart';
 import 'package:plaza/features/Favorites/data/repos/favorites_repo.dart';
+import 'package:plaza/features/Favorites/logic/toggle_favorite_cubit/toggle_favorite_state.dart';
 import 'package:plaza/features/home/logic/all_products_cubit/all_products_cubit.dart';
 
 class ToggleFavoriteCubit extends Cubit<ToggleFavoriteState> {

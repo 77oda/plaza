@@ -7,6 +7,6 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: customAppBar(), body: FavoritesBody());
+    return Scaffold(appBar: customAppBar(context), body: FavoritesBody());
   }
 }
