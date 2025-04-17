@@ -25,21 +25,6 @@ class ApiService {
     return ApiService._(dio);
   }
 
-  // ApiService(this.dio) {
-  //   dio.options = BaseOptions(
-  //     connectTimeout: Duration(seconds: 20),
-  //     receiveTimeout: Duration(seconds: 20),
-  //     baseUrl: 'https://student.valuxapps.com/api/',
-  //     receiveDataWhenStatusError: true,
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'lang': 'ar',
-  //       'Authorization': await CacheHelper.getSecuredString('token'),
-  //     },
-  //   );
-  //   // addDioInterceptor();
-  // }
-
   Future<Response> getData({
     required String endPoint,
     Map<String, dynamic>? query,
@@ -71,7 +56,7 @@ class ApiService {
   }
 
   void setTokenAfterLogin(String token) {
-    dio.options.headers = {'Authorization': token};
+    dio.options.headers = {'Authorization': token, 'lang': 'en'};
   }
 
   void addDioInterceptor() {

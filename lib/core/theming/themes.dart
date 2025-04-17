@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/theming/colors.dart';
 
 ThemeData lightMode() => ThemeData(
   primarySwatch: Colors.red,
   primaryColor: ColorsManager.primaryColor,
   appBarTheme: const AppBarTheme(
+    surfaceTintColor: Colors.white,
     backgroundColor: Colors.white,
     elevation: 0,
     actionsIconTheme: IconThemeData(color: Colors.black),
@@ -46,8 +46,8 @@ ThemeData lightMode() => ThemeData(
     backgroundColor: Colors.white,
     selectedItemColor: ColorsManager.primaryColor,
     unselectedItemColor: Colors.grey,
-    showUnselectedLabels: true,
     type: BottomNavigationBarType.fixed,
+    elevation: 10,
   ),
   progressIndicatorTheme: ProgressIndicatorThemeData(
     color:
@@ -61,9 +61,6 @@ ThemeData lightMode() => ThemeData(
     selectionHandleColor:
         ColorsManager.primaryColor, // 🔴 لون النقطة الكبيرة تحت المؤشر
   ),
-  // buttonTheme: ButtonThemeData(
-  //   buttonColor: ColorsManager.primaryColor,
-  // ),
 );
 
 // ThemeData darkMode() => ThemeData(

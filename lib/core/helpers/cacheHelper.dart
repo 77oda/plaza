@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -37,5 +39,15 @@ class CacheHelper {
   static clearAllSecuredData() async {
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
+  }
+
+  static Future<bool> isTokenExpired() async {
+    final expiryDateStr = await getSecuredString('tokenExpiryDate');
+    if (expiryDateStr == null || expiryDateStr == '') {
+      return true;
+    } else {
+      final expiryDate = DateTime.parse(expiryDateStr);
+      return DateTime.now().isAfter(expiryDate);
+    }
   }
 }

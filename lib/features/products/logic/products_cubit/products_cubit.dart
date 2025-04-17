@@ -9,10 +9,13 @@ class ProductsCubit extends Cubit<ProductsState> {
   Future<void> fetchProducts(int categoryId) async {
     emit(ProductsLoadingState());
     final result = await productsRepo.fetchProducts(categoryId);
-    result.fold((failure) => emit(ProductsErrorState(failure.errMessage)), (
-      products,
-    ) {
-      emit(ProductsSuccessState(products));
-    });
+    result.fold(
+      (failure) {
+        if (!isClosed) emit(ProductsErrorState(failure.errMessage));
+      },
+      (products) {
+        if (!isClosed) emit(ProductsSuccessState(products));
+      },
+    );
   }
 }

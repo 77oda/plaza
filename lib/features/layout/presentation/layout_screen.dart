@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:plaza/core/theming/colors.dart';
+import 'package:plaza/core/utils/assets.dart';
 import 'package:plaza/features/cart/logic/cart_cubit/cart_cubit.dart';
 import 'package:plaza/features/cart/presentation/cart_screen.dart';
 import 'package:plaza/features/categories/logic/categories_cubit/categories_cubit.dart';
@@ -83,7 +84,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
           ),
           selectedItemColor: ColorsManager.primaryColor,
           unselectedItemColor: Colors.grey[500],
-          elevation: 10,
           onTap: (index) {
             setState(() {
               currentIndex = index;
@@ -100,7 +100,7 @@ Widget notConnected() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Image.asset('assets/images/server_error.png'),
+      Image.asset(AssetsData.error),
       Text('No Internet Connection', style: TextStyle(fontSize: 20.sp)),
     ],
   );

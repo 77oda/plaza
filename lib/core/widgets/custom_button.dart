@@ -12,6 +12,7 @@ Widget customButton({
   decoration: BoxDecoration(color: ColorsManager.primaryColor),
   child: ElevatedButton(
     style: ButtonStyle(
+      elevation: MaterialStateProperty.all(0),
       backgroundColor: MaterialStateProperty.all(ColorsManager.primaryColor),
     ),
     onPressed: onTap,

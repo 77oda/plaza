@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaza/core/widgets/divider.dart';
 import 'package:plaza/features/categories/presentation/widgets/categories_item.dart';
 import 'package:plaza/features/categories/presentation/widgets/categories_shimmer.dart';

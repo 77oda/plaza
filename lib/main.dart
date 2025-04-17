@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:plaza/core/helpers/cacheHelper.dart';
+import 'package:flutter/services.dart';
 import 'package:plaza/core/theming/themes.dart';
 import 'package:plaza/core/utils/app_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +12,10 @@ Future<void> main() async {
   await setupServiceLocator();
   await AppRouter.getInitialRoute();
   Bloc.observer = MyBlocObserver();
-  print('${await CacheHelper.getSecuredString('token')}');
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(const MyApp());
 }
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: AppRouter.router,
-        title: 'Shop Mart',
+        title: 'ShopMart',
         theme: lightMode(),
         themeMode: ThemeMode.light,
       ),

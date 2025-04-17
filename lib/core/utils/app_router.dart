@@ -49,10 +49,11 @@ abstract class AppRouter {
   static Future<void> getInitialRoute() async {
     final finishedOnBoarding = await CacheHelper.getData('onBoarding') ?? false;
     final token = await CacheHelper.getSecuredString('token') ?? '';
+    final isTokenExpired = await CacheHelper.isTokenExpired();
 
     if (finishedOnBoarding == false)
       initialRoute = onBoardingScreen;
-    else if (token == '')
+    else if (token == '' || isTokenExpired)
       initialRoute = loginScreen;
     else
       initialRoute = layoutScreen;

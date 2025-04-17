@@ -21,13 +21,19 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold((failure) => emit(LoginErrorState(failure.errMessage)), (
       user,
     ) async {
-      await saveUserToken(user.data!.token!);
+      if (user.status == true) {
+        await saveUserToken(user.data!.token!);
+      }
       emit(LoginSuccessState(user));
     });
   }
 
   Future<void> saveUserToken(String token) async {
     await CacheHelper.setSecuredString('token', token);
+    await CacheHelper.setSecuredString(
+      'tokenExpiryDate',
+      DateTime.now().add(Duration(days: 30)).toIso8601String(),
+    );
     apiService.setTokenAfterLogin(token);
   }
 }
